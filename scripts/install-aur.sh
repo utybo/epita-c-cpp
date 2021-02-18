@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ $# -ne 1 ];
+if [ $# -ne 1 ]; then
     echo "install-aur: ERROR: Must have exactly one argument"
     exit 1
 fi
