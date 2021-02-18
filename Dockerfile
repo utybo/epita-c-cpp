@@ -12,7 +12,7 @@ COPY scripts /scripts
 RUN /scripts/patched-glibc.sh && \
     sudo pacman -Syu --noconfirm git clang autoconf-archive libev boost python-pre-commit python-pytest patch figlet && \
     /scripts/patched-glibc.sh && \
-    sudo pacman -Scc --noconfirm && \
     /scripts/setup-nobody.sh && \
     /scripts/install-aur.sh libcsptr && \
-    /scripts/install-aur.sh criterion
+    /scripts/install-aur.sh criterion && \
+    sudo pacman -Scc --noconfirm
