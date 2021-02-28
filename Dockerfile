@@ -10,7 +10,7 @@ COPY scripts /scripts
 # Deploy patched-glibc *again* after the glibc update done in pacman -Syu
 # Install libcsptr (dependency of criterion) and criterion
 RUN /scripts/patched-glibc.sh && \
-    sudo pacman -Syu --noconfirm git clang autoconf-archive libev boost python-pre-commit python-pytest python-requests python-pytest-xdist python-pytest-timeout patch figlet && \
+    sudo pacman -Syu --noconfirm git clang autoconf-archive libev boost python-pre-commit python-pytest python-requests python-pytest-xdist python-pytest-timeout patch figlet siege && \
     /scripts/patched-glibc.sh && \
     /scripts/setup-nobody.sh && \
     /scripts/install-aur.sh libcsptr && \
