@@ -1,6 +1,6 @@
 # C/C++ CI Image for EPITA
 
-![Docker Pulls](https://img.shields.io/docker/pulls/utybo/epita-c-cpp?logo=docker&logoColor=white&style=for-the-badge) ![Docker Tag](https://img.shields.io/docker/v/utybo/epita-c-cpp?label=tag&logo=docker&logoColor=white&style=for-the-badge)
+[![Docker Pulls](https://img.shields.io/docker/pulls/utybo/epita-c-cpp?logo=docker&logoColor=white&style=for-the-badge)](https://hub.docker.com/r/utybo/epita-c-cpp) [![Docker Tag](https://img.shields.io/docker/v/utybo/epita-c-cpp?label=tag&logo=docker&logoColor=white&style=for-the-badge)](https://hub.docker.com/r/utybo/epita-c-cpp)
 
 C/C++ Docker image for using CI at EPITA.
 
@@ -16,6 +16,8 @@ Releases are available on [Docker Hub](https://hub.docker.com/r/utybo/epita-c-cp
 docker pull utybo/epita-c-cpp
 ```
 
+Each version has an associated tag. There is also a `latest` tag, which corresponds to the latest version.
+
 ### Dev builds
 
 The `main` branch is automatically deployed to the [GitHub Container Registry](https://ghcr.io/utybo/epita-c-cpp) under the `git-main` tag.
@@ -23,6 +25,10 @@ The `main` branch is automatically deployed to the [GitHub Container Registry](h
 ```
 docker pull ghcr.io/utybo/epita-c-cpp:git-main
 ```
+
+### CI/CD
+
+This image is primarly intended for use in CI and other automated builds. You can use it as a regular Docker image. See below for an example on GitHub Actions.
 
 ## About epita-c-cpp
 
@@ -49,7 +55,7 @@ If you want to install additional software, some are available in `/scripts`:
 
 ### Alternatives
 
-A few other alternatives are also available and, if this one does not do it for you, feel free to check out these alternataives:
+A few other alternatives are also available and, if this one does not do it for you, feel free to check them out:
 
 - [`arch-toolchain`](https://github.com/chewie/arch-toolchain) by [Kévin 'Chewie' Sztern](https://github.com/chewie), the original image that gave me a starting point for this one. Also includes the `.clang-format` file used at EPITA (I'm not sure if I can redistribute it myself here)
 - [`Epita-Container`](https://github.com/FrancoisDtm/Epita-Container) by [François Dtm](https://github.com/FrancoisDtm), a container image which is more intended for day-to-day use rather than CI. It also includes a `.devcontainer` file.
@@ -96,7 +102,7 @@ jobs:
           docker run \
               --volume $PWD:/host \
               --workdir /host \
-              utybo/epita-c-cpp:git-main \
+              utybo/epita-c-cpp:latest \
               bash -c "scripts/YOUR_SCRIPT_NAME_HERE.sh"
 ```
 
