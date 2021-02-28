@@ -1,6 +1,6 @@
 # C/C++ CI Image for EPITA
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/utybo/epita-c-cpp/ci?label=CI%2FCD&logo=github&style=for-the-badge) ![Docker Pulls](https://img.shields.io/docker/pulls/utybo/epita-c-cpp?logo=docker&logoColor=white&style=for-the-badge) ![Docker Tag](https://img.shields.io/docker/v/utybo/epita-c-cpp?label=tag&logo=docker&logoColor=white&style=for-the-badge)
+![Docker Pulls](https://img.shields.io/docker/pulls/utybo/epita-c-cpp?logo=docker&logoColor=white&style=for-the-badge) ![Docker Tag](https://img.shields.io/docker/v/utybo/epita-c-cpp?label=tag&logo=docker&logoColor=white&style=for-the-badge)
 
 C/C++ Docker image for using CI at EPITA.
 
@@ -8,12 +8,20 @@ This is a self-contained, no-dependence-on-school-servers CI setup, mostly made 
 
 ## Download & use
 
-This image is available on [Docker Hub](https://hub.docker.com/r/utybo/epita-c-cpp). The `main` branch is automatically deployed to the `git-main` tag.
+### Versions
 
-You can also pull this image using the following command:
+Releases are available on [Docker Hub](https://hub.docker.com/r/utybo/epita-c-cpp). You can pull this image using the following command:
 
 ```
 docker pull utybo/epita-c-cpp
+```
+
+### Dev builds
+
+The `main` branch is automatically deployed to the [GitHub Container Registry](https://ghcr.io/utybo/epita-c-cpp) under the `git-main` tag.
+
+```
+docker pull ghcr.io/utybo/epita-c-cpp:git-main
 ```
 
 ## About epita-c-cpp
