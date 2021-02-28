@@ -1,8 +1,20 @@
 # C/C++ CI Image for EPITA
 
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/utybo/epita-c-cpp/ci?label=CI%2FCD&logo=github&style=for-the-badge) ![Docker Pulls](https://img.shields.io/docker/pulls/utybo/epita-c-cpp?logo=docker&logoColor=white&style=for-the-badge) ![Docker Tag](https://img.shields.io/docker/v/utybo/epita-c-cpp?label=tag&logo=docker&logoColor=white&style=for-the-badge)
+
 C/C++ Docker image for using CI at EPITA.
 
 This is a self-contained, no-dependence-on-school-servers CI setup, mostly made to speed up our own CI which uses all of this.
+
+## Download & use
+
+This image is available on [Docker Hub](https://hub.docker.com/r/utybo/epita-c-cpp). The `main` branch is automatically deployed to the `git-main` tag.
+
+You can also pull this image using the following command:
+
+```
+docker pull utybo/epita-c-cpp
+```
 
 ## About epita-c-cpp
 
@@ -94,3 +106,7 @@ echo Run tests | figlet
 
 make check
 ```
+
+## Need help? Want to add something?
+
+Feel free to open an issue if you want something else added to this image!
