@@ -3,12 +3,15 @@ FROM archlinux:base-devel
 # Copy installation scripts
 COPY scripts /scripts
 
-# Installation of basic packages
-# Git, Clang, Autotools, pre-commit are generally required
-# LibEV and Boost are required for the Spider project
-# patch is required for installing Criterion later on
-# Deploy patched-glibc *again* after the glibc update done in pacman -Syu
-# Install libcsptr (dependency of criterion) and criterion
+# Installation process
+# - Setup a patched glibc
+# - Install various packages
+# - Deploy patched-glibc *again* after the glibc update done in pacman -Syu
+# - Set up the "nobody" user
+# - Install libcsptr (dependency of criterion) and criterion via the AUR
+# - siege returns JSON data on stdout, but also prints a message on the first run.
+#   We run siege -C first to make it display its message -- the next uses of siege
+#   will only return the json
 RUN /scripts/patched-glibc.sh && \
     sudo pacman -Syu --noconfirm git clang autoconf-archive libev boost python-pre-commit python-pytest python-requests python-pytest-xdist python-pytest-timeout patch figlet siege && \
     /scripts/patched-glibc.sh && \
