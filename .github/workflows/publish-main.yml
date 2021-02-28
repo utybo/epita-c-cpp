@@ -37,7 +37,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/utybo/epita-c-cpp:git-main
+          tags: ghcr.io/${{ github.repository_owner }}/epita-c-cpp:git-main
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
