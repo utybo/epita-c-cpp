@@ -11,6 +11,9 @@ jobs:
   docker:
     runs-on: ubuntu-20.04
     steps:
+      - name: Retrieve tag name
+        run: |
+          echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: update runc # from https://github.com/zivid/zivid-python/blob/fc31e622161720e0422bfe1bb15d4d3c0be1f972/.github/workflows/main.yml
         run: |
           sudo apt-get install --assume-yes libseccomp-dev
@@ -35,7 +38,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: utybo/epita-c-cpp:git-main
+          tags: "utybo/epita-c-cpp:latest,utybo/epita-c-cpp:${{ env.RELEASE_VERSION }}"
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
