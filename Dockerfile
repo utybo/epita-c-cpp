@@ -15,4 +15,5 @@ RUN /scripts/patched-glibc.sh && \
     /scripts/setup-nobody.sh && \
     /scripts/install-aur.sh libcsptr && \
     /scripts/install-aur.sh criterion && \
+    siege -C && \
     sudo pacman -Scc --noconfirm
