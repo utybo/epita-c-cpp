@@ -1,11 +1,11 @@
 # from https://github.com/docker/build-push-action#git-context
 
-name: ci
+name: "Publish to Docker Hub (tag)"
 
 on:
   push:
-    branches:
-      - 'main'
+    tags:
+      - "v*.*.*"
 
 jobs:
   docker:
