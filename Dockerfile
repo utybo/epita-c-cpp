@@ -13,7 +13,9 @@ COPY scripts /scripts
 #   We run siege -C first to make it display its message -- the next uses of siege
 #   will only return the json
 RUN /scripts/patched-glibc.sh && \
-    sudo pacman -Syu --noconfirm git clang autoconf-archive libev boost python-pre-commit python-pytest python-requests python-pytest-xdist python-pytest-timeout patch figlet siege && \
+    sudo pacman -Syu --noconfirm git clang autoconf-archive cmake libev boost python-pre-commit \
+                                 python-pytest python-pytest-xdist python-pytest-timeout \
+                                 python-requests patch figlet siege gtest && \
     /scripts/patched-glibc.sh && \
     /scripts/setup-nobody.sh && \
     /scripts/install-aur.sh libcsptr && \
