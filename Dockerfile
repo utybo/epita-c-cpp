@@ -15,7 +15,7 @@ COPY scripts /scripts
 RUN /scripts/patched-glibc.sh && \
     sudo pacman -Syu --noconfirm git clang autoconf-archive cmake libev boost python-pre-commit \
                                  python-pytest python-pytest-xdist python-pytest-timeout \
-                                 python-requests patch figlet siege gtest && \
+                                 python-requests patch figlet siege gtest mkcert && \
     /scripts/patched-glibc.sh && \
     /scripts/setup-nobody.sh && \
     /scripts/install-aur.sh libcsptr && \
