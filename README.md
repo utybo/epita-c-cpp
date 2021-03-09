@@ -43,7 +43,9 @@ This is an Arch-based Docker image with various tools for testing C/C++ code at 
 - **Unit testing:** Criterion
 - **Others:** patch, figlet
 
-Note that this Dockerfile currently uses a patched glibc due to various Arch Linux bugs with docker (see [this issue](https://github.com/actions/virtual-environments/issues/2658)). While an updated package is available, it has not landed in Arch's Docker images, so manual patching it is. Patching `runc` is also required for now (see below for a GH Actions example).
+Note that this Dockerfile currently uses a patched glibc due to various Arch Linux bugs with docker (see [this issue](https://github.com/actions/virtual-environments/issues/2658)). While an updated package is available, it has not landed in Arch's Docker images, so manual patching it is. 
+
+Patching `runc` may be required depending on your Docker version (see below for a GH Actions example). This is not required right now.
 
 ### Scripts
 
@@ -61,6 +63,41 @@ A few other alternatives are also available and, if this one does not do it for 
 - [`Epita-Container`](https://github.com/FrancoisDtm/Epita-Container) by [François Dtm](https://github.com/FrancoisDtm), a container image which is more intended for day-to-day use rather than CI. It also includes a `.devcontainer` file.
 
 ## Example
+
+### GitHub Actions
+
+Here is a starting point for a workflow in GitHub Actions.
+
+```yaml
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  check:
+    # The name of our job
+    name: Compiler + check
+    # This is where docker is ran
+    runs-on: ubuntu-20.04
+    # Timeout in minutes. Criterion will sometimes freeze indefinitely while running tests.
+    # Adjust this as needed
+    timeout-minutes: 20
+    # The steps
+    steps:
+      - uses: actions/checkout@v2
+      - name: Compile code
+        runs: make all
+      - name: Test code
+        runs: make check
+```
+
+### GitHub Actions (manual patch)
+
+**This is no longer necessary, use the regular GitHub Actions file instead.**
 
 Here is a starting point for a workflow in GitHub Actions. Note that, due to aforementioned bugs, we need to manually patch the glibc in the container *and* update `runc` on the host while we wait for a new Docker release. Once this is fixed upstream, the whole thing will be much easier (just add a `container: utybo/c-cpp-epita:git-main` and boom, you're running your commands inside a container)
 
