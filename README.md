@@ -37,21 +37,16 @@ This is an Arch-based Docker image with various tools for testing C/C++ code at 
 ### Software
 
 - All of the basic development tools from Arch
-- **Compilation + dev:** Clang, Git, autoconf, libev, boost
+- **Compilation + dev:** Clang (including clang-format and clang-tidy), Git, autoconf, libev, boost
 - **Checks:** Pre-commit
 - **Functional testing:** Siege, Pytest (with xdist and timeout extensions), Requests
 - **Unit testing:** Criterion
 - **Others:** patch, figlet
 
-Note that this Dockerfile currently uses a patched glibc due to various Arch Linux bugs with docker (see [this issue](https://github.com/actions/virtual-environments/issues/2658)). While an updated package is available, it has not landed in Arch's Docker images, so manual patching it is. 
-
-Patching `runc` may be required depending on your Docker version (see below for a GH Actions example). This is not required right now.
-
 ### Scripts
 
 If you want to install additional software, some are available in `/scripts`:
 
-- `/scripts/patched-glibc.sh` Patches the glibc for fixing various Arch issues. You may need to do this after a `pacman -Syu`
 - `/scripts/setup-nobody` Sets up a `nobody` user, which is the used to install AUR packages. You should not call this, as it is already done.
 - `/scripts/install-aur.sh` Manually installs an AUR package, e.g. `/scripts/install-aur criterion`.
 
@@ -88,7 +83,8 @@ jobs:
     timeout-minutes: 20
     # The steps
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2 # Clones the repo
+      # Add any step you want. Remember that you can use anything that is included in this repo!
       - name: Compile code
         runs: make all
       - name: Test code
@@ -97,9 +93,9 @@ jobs:
 
 ### GitHub Actions (manual patch)
 
-**This is no longer necessary, use the regular GitHub Actions file instead.**
+**This is no longer necessary, use the regular GitHub Actions file instead.** Previous issues required patching both the glibc inside the container *and* `runc` outside of it. These are no longer necessary (the script for patching the glibc has since then been removed), but the following is still left in case anyone needs it.
 
-Here is a starting point for a workflow in GitHub Actions. Note that, due to aforementioned bugs, we need to manually patch the glibc in the container *and* update `runc` on the host while we wait for a new Docker release. Once this is fixed upstream, the whole thing will be much easier (just add a `container: utybo/c-cpp-epita:git-main` and boom, you're running your commands inside a container)
+Here is a starting point for a workflow in GitHub Actions. Note that, due to [what is explained in this issue](https://github.com/actions/virtual-environments/issues/2658), we needed to manually patch the glibc in the container *and* update `runc` on the host while we waited for a new Docker release.
 
 TL;DR, create a script in a `scripts/` folder in your repo (name it something like `ci.sh` or something) that does everything you want (compiling, etc.)
 
@@ -143,8 +139,7 @@ jobs:
               bash -c "scripts/YOUR_SCRIPT_NAME_HERE.sh"
 ```
 
-This has the severe drawback of only having one step displayed on GitHub Actions for the entire compilation process. We unfortunately cannot do much about this, as we need to run stuff outside of the container (updating runc), then *in* the container (running our CI 
-stuff). This is still a pretty nice workaround.
+This has the severe drawback of only having one step displayed on GitHub Actions for the entire compilation process. We unfortunately cannot do much about this, as we need to run stuff outside of the container (updating runc), then *in* the container (running our CI stuff). This is still a pretty nice workaround.
 
 Here's an example of what the script could look like:
 
