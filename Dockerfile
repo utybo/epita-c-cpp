@@ -14,7 +14,7 @@ COPY scripts /scripts
 #   will only return the json
 RUN sudo pacman -Syu --noconfirm git clang autoconf-archive cmake libev boost python-pre-commit \
                                  python-pytest python-pytest-xdist python-pytest-timeout \
-                                 python-requests patch figlet siege gtest mkcert && \
+                                 python-requests patch figlet siege gtest mkcert caddy && \
     /scripts/setup-nobody.sh && \
     /scripts/install-aur.sh libcsptr && \
     /scripts/install-aur.sh criterion && \
