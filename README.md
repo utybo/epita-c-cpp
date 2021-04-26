@@ -40,7 +40,7 @@ This is an Arch-based Docker image with various tools for testing C/C++ code at 
 - **Compilation + dev:** Clang (including clang-format and clang-tidy), Git, autoconf, libev, boost
 - **Checks:** Pre-commit
 - **Functional testing:** Siege, Pytest (with xdist and timeout extensions), Requests
-- **Unit testing:** Criterion
+- **Unit testing:** Criterion, GTest, GMock
 - **Others:** patch, figlet
 
 ### Scripts
