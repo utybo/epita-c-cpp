@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Added `caddy`. This is useful for testing the Spider project against regular backends for the reverse proxy side of things.
-- Added `gmock`. Some CMake projects failed due to a hidden dependency on GMock when using GTest.
 
 ## 0.2.0 - 2020-03-09
 
