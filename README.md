@@ -28,7 +28,7 @@ docker pull ghcr.io/utybo/epita-c-cpp:git-main
 
 ### CI/CD
 
-This image is primarly intended for use in CI and other automated builds. You can use it as a regular Docker image. See below for an example on GitHub Actions.
+This image is primarily intended for use in CI and other automated builds. You can use it as a regular Docker image. See below for an example on GitHub Actions.
 
 ## About epita-c-cpp
 
@@ -42,6 +42,15 @@ This is an Arch-based Docker image with various tools for testing C/C++ code at 
 - **Functional testing:** Siege, Pytest (with xdist and timeout extensions), Requests
 - **Unit testing:** Criterion, GTest, GMock
 - **Others:** patch, figlet
+
+You can check out the full list of packages by running:
+
+```sh
+# For the current unreleased version
+$ docker run ghcr.io/utybo/epita-c-cpp:git-main bash -c "pacman -Q"
+# For a released version, replace VERSION by the one you want (e.g. 0.2.0)
+$ docker run utybo/epita-c-cpp:VERSION -c "pacman -Q"
+```
 
 ### Scripts
 
@@ -92,6 +101,10 @@ jobs:
 ```
 
 ### GitHub Actions (manual patch)
+
+<details>
+
+<summary>Click to expand...</summary>
 
 **This is no longer necessary, use the regular GitHub Actions file instead.** Previous issues required patching both the glibc inside the container *and* `runc` outside of it. These are no longer necessary (the script for patching the glibc has since then been removed), but the following is still left in case anyone needs it.
 
@@ -152,6 +165,8 @@ echo Run tests | figlet
 
 make check
 ```
+
+</details>
 
 ## Need help? Want to add something?
 

@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # From http://allanmcrae.com/2015/01/replacing-makepkg-asroot/
 
 mkdir /home/build
