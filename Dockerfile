@@ -1,4 +1,4 @@
-FROM archlinux:base-devel-20210815.0.31571
+FROM archlinux:base-devel-20210822.0.32033
 
 # Copy installation scripts
 COPY scripts /scripts
