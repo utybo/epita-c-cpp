@@ -1,3 +1,11 @@
+# HEY! I've been Nix'd
+
+EPITA has switched to using Nix and NixOS for all development purposes: this repository has no reason to exist anymore (and hasn't been updated in 3 years).
+
+Original README below.
+
+---
+
 # C/C++ CI Image for EPITA
 
 [![Docker Pulls](https://img.shields.io/docker/pulls/utybo/epita-c-cpp?logo=docker&logoColor=white&style=for-the-badge)](https://hub.docker.com/r/utybo/epita-c-cpp) [![Docker Tag](https://img.shields.io/docker/v/utybo/epita-c-cpp?label=tag&logo=docker&logoColor=white&style=for-the-badge)](https://hub.docker.com/r/utybo/epita-c-cpp)
